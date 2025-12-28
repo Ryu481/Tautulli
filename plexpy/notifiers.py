@@ -2821,7 +2821,7 @@ class OSX(Notifier):
 
         try:
             if not getattr(self, "_swizzled", False):
-                logger.info("Szizzlen")
+                logger.info("Schon geswizzled {name}".format(name=self._swizzled))
                 self._swizzle(self.objc.lookUpClass('NSBundle'),
                     b'bundleIdentifier',
                     self._swizzled_bundleIdentifier)
