@@ -2818,9 +2818,11 @@ class OSX(Notifier):
         image = kwargs.get('image', '')
 
         try:
-            self._swizzle(self.objc.lookUpClass('NSBundle'),
-                b'bundleIdentifier',
-                self._swizzled_bundleIdentifier)
+            if not getattr(self, "_swizzled", False):
+                self._swizzle(self.objc.lookUpClass('NSBundle'),
+                    b'bundleIdentifier',
+                    self._swizzled_bundleIdentifier)
+                self._swizzled = True
 
             NSUserNotification = self.objc.lookUpClass('NSUserNotification')
             NSUserNotificationCenter = self.objc.lookUpClass('NSUserNotificationCenter')
