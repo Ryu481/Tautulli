@@ -2784,6 +2784,8 @@ class OSX(Notifier):
     def __init__(self, config=None):
         super(OSX, self).__init__(config=config)
 
+        self._swizzled = False
+
         try:
             self.objc = __import__("objc")
             self.AppKit = __import__("AppKit")
@@ -2819,6 +2821,7 @@ class OSX(Notifier):
 
         try:
             if not getattr(self, "_swizzled", False):
+                logger.info("Szizzlen")
                 self._swizzle(self.objc.lookUpClass('NSBundle'),
                     b'bundleIdentifier',
                     self._swizzled_bundleIdentifier)
