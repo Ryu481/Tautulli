@@ -2826,6 +2826,7 @@ class OSX(Notifier):
                     b'bundleIdentifier',
                     self._swizzled_bundleIdentifier)
                 self._swizzled = True
+                logger.info("Wert geändert? {name}".format(name=self._swizzled))
 
             NSUserNotification = self.objc.lookUpClass('NSUserNotification')
             NSUserNotificationCenter = self.objc.lookUpClass('NSUserNotificationCenter')
